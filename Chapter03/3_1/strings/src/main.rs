@@ -8,14 +8,14 @@ fn main() {
     println!("{my_str}");
 
     for byte in my_str.bytes() {
-        println!("{byte}")
+        println!("Byte: {byte}")
     }
 
     for chr in my_str.chars() {
-        println!("{chr}")
+        println!("Char: {chr}")
     }
 
     for (pos, chr) in my_str.char_indices() {
-        println!("{pos}: {chr}")
+        println!("Char_Indices: {pos}: {chr}")
     }
 }
