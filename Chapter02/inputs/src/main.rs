@@ -11,5 +11,9 @@ fn main() {
         .read_line(&mut user_input)
         .expect("Failed to read number!");
 
-    println!("You entered: {user_input}");
+    let user_input = user_input.trim();
+
+    let parsed_number = user_input.parse::<i32>();
+
+    println!("You entered: {user_input}, as number: {parsed_number:?}");
 }

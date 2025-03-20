@@ -1,7 +1,7 @@
 {
     // Editor settings
     "editor.tabSize": 4,
-    "editor.rulers": [120],
+    "editor.rulers": [160],
     "editor.renderWhitespace": "trailing",
     "editor.suggestSelection": "first",
     "editor.formatOnSave": true,
@@ -143,10 +143,7 @@
         "${workspaceFolder}/Projects/project09/Cargo.toml",
         "${workspaceFolder}/Projects/project07/Cargo.toml",
         "${workspaceFolder}/Chapter07/7_2/documentation/Cargo.toml",
-        "${workspaceFolder}/Chapter07/7_2/workspaces/lib2/Cargo.toml",
         "${workspaceFolder}/Chapter07/7_2/workspaces/Cargo.toml",
-        "${workspaceFolder}/Chapter07/7_2/workspaces/lib1/Cargo.toml",
-        "${workspaceFolder}/Chapter07/7_2/workspaces/app/Cargo.toml",
         "${workspaceFolder}/Chapter07/7_2/clippy_lint/Cargo.toml",
         "${workspaceFolder}/Chapter07/7_2/compile_options/Cargo.toml",
         "${workspaceFolder}/Chapter07/7_2/benches/Cargo.toml",
