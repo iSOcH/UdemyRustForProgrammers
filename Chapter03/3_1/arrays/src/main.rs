@@ -24,4 +24,9 @@ fn main() {
     array2[0] = 10;
 
     println!("{array2:?}");
+
+    let y = &mut array2[1];
+    *y = 20;
+
+    println!("{array2:?}");
 }
