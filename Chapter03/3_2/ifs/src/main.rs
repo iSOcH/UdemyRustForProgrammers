@@ -14,6 +14,7 @@ fn main() {
     let number = 6;
     number_checker(number);
 
+    #[allow(clippy::eq_op)]
     let condition = 6 % 2 == 0;
     let number = if condition { 5 } else { 6 }; // ternary operator
 

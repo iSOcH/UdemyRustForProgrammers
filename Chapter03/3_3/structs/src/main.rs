@@ -36,5 +36,6 @@ fn main() {
 
     user2.password = String::from("NewPassword");
 
-    println!("{user2:?}");
+    // # does "pretty print", similar to indented json
+    println!("User2 pretty-printed: {user2:#?}");
 }

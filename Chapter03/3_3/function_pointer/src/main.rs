@@ -11,5 +11,7 @@ fn main() {
 
     let closure = |inp: i32| -> i32 { inp * 2 };
 
+    // this call becomes invalid as soon as the closure captures any context
+    // compiler: "closures can only be coerced to `fn` types if they do not capture any variables"
     takes_some_function_as_input(closure);
 }
