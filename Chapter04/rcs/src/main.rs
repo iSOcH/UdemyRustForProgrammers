@@ -22,7 +22,7 @@ fn box_example() {
 
     let car2 = car1; // Move!
 
-    println!("{:#?}", car1);
+    // println!("{:#?}", car1); // compile error since car1 was moved to car2
     println!("{:#?}", car2);
 }
 
@@ -41,6 +41,6 @@ fn rc_example() {
 }
 
 fn main() {
-    // box_example();
+    box_example();
     rc_example();
 }

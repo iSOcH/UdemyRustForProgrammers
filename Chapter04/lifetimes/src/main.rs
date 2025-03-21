@@ -4,6 +4,7 @@
 // generic lifetime parameters define the relationship between the references
 // 'a: lifetime (spoken: tick a)
 
+#[allow(unused_assignments, unused_variables)]
 fn invalid_lifetime() {
     let r: &str;
 
@@ -12,7 +13,8 @@ fn invalid_lifetime() {
         r = &string1;
     }
 
-    println!("{}", r);
+    // compile error, string1 does not live long enough
+    // println!("{}", r);
 }
 
 fn valid_lifetime() {
@@ -30,13 +32,14 @@ fn valid_lifetime() {
     }
 }
 
-fn longest_str_invalid(x: &str, y: &str) -> &str {
-    if x.len() > y.len() {
-        x
-    } else {
-        y
-    }
-}
+// compile error: needs lifetime annotations
+// fn longest_str_invalid(x: &str, y: &str) -> &str {
+//     if x.len() > y.len() {
+//         x
+//     } else {
+//         y
+//     }
+// }
 
 fn longest_str_valid<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() {
@@ -47,6 +50,6 @@ fn longest_str_valid<'a>(x: &'a str, y: &'a str) -> &'a str {
 }
 
 fn main() {
-    // invalid_lifetime();
+    invalid_lifetime();
     valid_lifetime();
 }
