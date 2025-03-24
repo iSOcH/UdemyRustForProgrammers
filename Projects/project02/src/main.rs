@@ -11,7 +11,7 @@ struct Arguments<'a> {
     output_file: &'a String,
 }
 
-fn parse_args(argc: usize, argv: &Vec<String>) -> Arguments {
+fn parse_args(argc: usize, argv: &[String]) -> Arguments {
     if argc != 5 {
         eprintln!("{} wrong number of arguments!", "ERROR".red());
         std::process::exit(1);
@@ -36,7 +36,7 @@ fn read(filepath: &str) -> String {
 }
 
 fn write(output_file: &str, data: &str) {
-    match fs::write(&output_file, &data) {
+    match fs::write(output_file, data) {
         Ok(_) => {}
         Err(_) => {
             eprintln!(
@@ -57,9 +57,9 @@ fn replace(search_pattern: &str, replacement: &str, data: &str) -> Result<String
 
 fn run(argc: usize, argv: Vec<String>) {
     let args = parse_args(argc, &argv);
-    let data = read(&args.input_file);
+    let data = read(args.input_file);
 
-    let replaced_data = match replace(&args.pattern, &args.replace, &data) {
+    let replaced_data = match replace(args.pattern, args.replace, &data) {
         Ok(data) => data,
         Err(_) => {
             eprintln!("{} Failed to replace data!", "ERROR".red(),);
@@ -67,7 +67,7 @@ fn run(argc: usize, argv: Vec<String>) {
         }
     };
 
-    write(&args.output_file, &replaced_data);
+    write(args.output_file, &replaced_data);
 }
 
 fn main() {
