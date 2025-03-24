@@ -2,7 +2,7 @@ use std::cmp::{Eq, PartialEq, PartialOrd};
 
 trait Summary {
     fn summarize(&self) -> String {
-        format!("Not Implemented!")
+        "Not Implemented!".to_string()
     }
 }
 

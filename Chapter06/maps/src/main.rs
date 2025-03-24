@@ -1,7 +1,11 @@
 // For types that implement the Copy trait, like i32, the values are copied into the hash map.
 // For owned values like String, the values will be moved and the hash map will be the owner.
 
-use std::collections::HashMap;
+use std::{
+    collections::HashMap,
+    hash::Hash,
+    ops::{Add, AddAssign},
+};
 
 fn main() {
     let mut map = HashMap::new();
@@ -43,4 +47,35 @@ fn main() {
     let search_key = 1;
     let got_value = map.get(&search_key).copied().unwrap_or(0);
     println!("got_value: {}", got_value);
+
+    // more efficiently addIfNotPresent
+    let existing_entry = map.entry(1);
+    existing_entry.or_insert(3); // will not change existing entry
+    println!("After entry(1).or_insert(3): {:?}", map);
+
+    // increment counter
+    increment_or_add(&mut map, 2, 1);
+    println!(r#"After entry(2) "incrementOrAdd": {:?}"#, map);
+    increment_or_add(&mut map, 2, 1);
+    println!(r#"After entry(2) "incrementOrAdd again": {:?}"#, map);
+    increment_or_add(&mut map, 1, 1);
+    println!(r#"After entry(2) "incrementOrAdd": {:?}"#, map);
+}
+
+fn increment_or_add<K, V>(map: &mut HashMap<K, V>, key: K, step: V)
+where
+    K: Eq + Hash,
+    V: Add<Output = V> + AddAssign + Default,
+{
+    let entry = map.entry(key);
+
+    // cannot call both methods (or_insert and and_mutate) on `entry` since they consume entry
+    match entry {
+        std::collections::hash_map::Entry::Vacant(empty) => {
+            empty.insert(V::default() + step);
+        }
+        std::collections::hash_map::Entry::Occupied(mut existing) => {
+            *existing.get_mut() += step;
+        }
+    }
 }
